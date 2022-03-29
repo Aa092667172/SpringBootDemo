@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "spring.message.encoding",
+      "type": "java.lang.String",
+      "description": "Description for spring.message.encoding."
+  }
+] }
