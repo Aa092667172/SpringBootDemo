@@ -1,0 +1,21 @@
+spring:
+  mvc:
+    static-path-pattern: /res/**
+#    靜態資源目錄 預設為/
+#    但會造成index.hmtl不能被默認訪問
+  web:
+    resources:
+      static-locations:
+                        - classpath:/haha/
+                        - classpath:/META-INF/resources/
+                        - classpath:/resources/
+                        - classpath:/static/
+                        - classpath:/public/
+#    默認
+#    { "classpath:/META-INF/resources/",
+#        "classpath:/resources/", "classpath:/static/", "classpath:/public/" }
+#    可多個 自定義靜態資源路徑
+  servlet:
+      multipart:
+        max-file-size: 10MB
+        max-request-size: 10MB
