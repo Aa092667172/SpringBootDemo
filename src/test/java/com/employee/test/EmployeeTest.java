@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 class EmployeeTest {
     @Autowired
     private EmployeeRepository repository;
+
     @Test
     public void save() {
         Employee vo = new Employee();
@@ -20,4 +21,8 @@ class EmployeeTest {
         System.out.println(employee);
     }
 
+    @Test
+    public void findAll() {
+        System.out.println(repository.findAll());
+    }
 }

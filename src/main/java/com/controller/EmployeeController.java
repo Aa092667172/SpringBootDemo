@@ -10,10 +10,10 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/employee")
-public class EmployeeServlet {
+public class EmployeeController {
     private final EmployeeRepository repository;
 
-    public EmployeeServlet(EmployeeRepository repository) {
+    public EmployeeController(EmployeeRepository repository) {
         this.repository = repository;
     }
 
