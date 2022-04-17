@@ -3,12 +3,10 @@ package com.entity;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 @Data
 public class Student {
-    @NotNull
-    private Integer id;
+    private Long id;
     @NotBlank
     private String name;
 }
