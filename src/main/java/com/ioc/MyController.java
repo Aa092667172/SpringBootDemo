@@ -20,7 +20,7 @@ public class MyController {
     @Qualifier("testPrinter")
     private Printer printer1;
 
-    @RequestMapping("/test")
+    @RequestMapping("/testIoc")
     public String test(){
         printer.print("Hello World");
         printer1.print("嗨嗨");

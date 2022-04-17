@@ -21,8 +21,8 @@ public class RequestController {
 
     @ResponseBody
     @GetMapping("/success")
-    public Map<String, Object> success(@RequestAttribute("msg") String msg,
-                                        @RequestAttribute("code") Integer code,
+    public Map<String, Object> success(@RequestAttribute String msg,
+                                        @RequestAttribute Integer code,
                                         HttpServletRequest request){
         Object msg1 = request.getAttribute("msg");
         Map<String,Object> map = new HashMap<>();

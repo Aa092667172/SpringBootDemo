@@ -1,5 +1,6 @@
 package com.controller;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 
@@ -8,16 +9,19 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@RestController
+@Controller
 public class ParameterTestController {
-    /**/
+    /**
+     * RequestParam 設置required = false
+     * or defaultValue則未傳入參數不會報錯
+     */
     @GetMapping("/car/{id}/owner/{username}")
     public Map<String, Object> getCar(@PathVariable("id") Integer id
             , @PathVariable("username") String name
             , @PathVariable Map<String, String> pv
             , @RequestHeader("User-Agent") String userAgent
             , @RequestHeader Map<String, String> header
-            , @RequestParam("age") Integer age
+            , @RequestParam(name = "age",defaultValue = "20") Integer age
             , @RequestParam("inters") List<String> list
             , @RequestParam MultiValueMap<String, String> parameter
             , @CookieValue("Cookie_1") String cookie_1
@@ -34,14 +38,15 @@ public class ParameterTestController {
         map.put("cookie", cookie);
         System.out.println(cookie.getName());
         System.out.println(cookie.getValue());
-
         return map;
     }
 
     @PostMapping("/save")
+    @ResponseBody
     public Map<String, String> postMethod(@RequestBody String content) {
         Map<String, String> map = new HashMap<>();
         map.put("content", content);
+        System.out.println(content);
         return map;
     }
 
