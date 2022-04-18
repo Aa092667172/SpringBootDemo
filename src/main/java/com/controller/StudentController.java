@@ -1,11 +1,10 @@
 package com.controller;
 
 import com.entity.Student;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.service.StudentService;
 import com.springjdbc.StudentRowMapper;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -13,14 +12,20 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 @RestController
 @Validated
 public class StudentController {
+    @Autowired
+    private StudentService studentService;
+
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-    public StudentController(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+    public StudentController( @Qualifier("gogo") NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
 
@@ -49,6 +54,8 @@ public class StudentController {
         return "執行一批 insert sql";
     }
 
+
+
     @GetMapping("/students")
     public List<Student> selectList() {
         String sql = "select id,name from student ";
@@ -57,26 +64,11 @@ public class StudentController {
     }
 
     @GetMapping("/students/{studentId}")
-    public ResponseEntity<String> selectOne(@PathVariable Long studentId) {
-        String sql = "select id,name from student where id = :id ";
-        Map<String,Object> map = new HashMap<>();
-        map.put("id",studentId);
-        List<Student> list = namedParameterJdbcTemplate.query(sql, map, new StudentRowMapper());
-//        List<Student> list = namedParameterJdbcTemplate.query(sql, map, new StudentResultSetExtractor());
-        return list.stream()
-                .findFirst()
-                .map(value -> {
-                    try {
-                        return ResponseEntity.ok()
-                                .contentType(MediaType.APPLICATION_JSON)
-                                .body(new ObjectMapper().writeValueAsString(value));
-                    } catch (JsonProcessingException e) {
-                        throw new RuntimeException(e);
-                    }
-                })
-                .orElseGet(() -> ResponseEntity.badRequest().body("查無此Id資料"));
-
+    public Student selectOne(@PathVariable Long studentId) {
+        return studentService.getById(studentId);
     }
+
+
 
     @PutMapping("/students/{studentId}")
     public String update(@PathVariable Integer studentId,
