@@ -16,6 +16,7 @@ import java.util.Optional;
 @RequestMapping("/employee")
 public class EmployeeController {
     private final EmployeeRepository repository;
+    private boolean aBoolean;
 
     public EmployeeController(EmployeeRepository repository) {
         this.repository = repository;
@@ -30,6 +31,17 @@ public class EmployeeController {
     @GetMapping("/")
     public List<Employee> getAll() {
         return repository.findAll();
+    }
+
+    @GetMapping("/email")
+    public Employee getEmail(@RequestParam String email) {
+        return repository.findByEmail(email);
+    }
+
+    @GetMapping("/{id}/{name}")
+    public Employee testQuery(@PathVariable Long id,
+                              @PathVariable String name) {
+        return repository.testQuery(name,id);
     }
 
     @PostMapping("/save")
@@ -55,13 +67,9 @@ public class EmployeeController {
     @DeleteMapping("/{id}")
     public String delete(@PathVariable Long id) {
         Optional<Employee> employee = repository.findById(id);
-        String result;
-        if(employee.isPresent()){
-            repository.deleteById(id);
-            result = "刪除成功";
-        }else{
-            result = "查無此員工";
-        }
-        return result;
+        return employee.map(e -> {
+            repository.deleteById(e.getId());
+            return "刪除成功";
+        }).orElse("查無此員工");
     }
 }
