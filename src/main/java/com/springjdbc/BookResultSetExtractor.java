@@ -1,6 +1,6 @@
 package com.springjdbc;
 
-import com.entity.Student;
+import com.model.Book;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.ResultSetExtractor;
 
@@ -13,15 +13,15 @@ import java.util.List;
  * StudentResultSetExtractor與傳統JDBC較相似 與RowMapper差別在於
  * 寫法以及RowMapper只能取得當前Row的資訊
  */
-public class StudentResultSetExtractor implements ResultSetExtractor<List<Student>> {
+public class BookResultSetExtractor implements ResultSetExtractor<List<Book>> {
     @Override
-    public List<Student> extractData(ResultSet rs) throws SQLException, DataAccessException {
-        List<Student> result = new ArrayList<>();
+    public List<Book> extractData(ResultSet rs) throws SQLException, DataAccessException {
+        List<Book> result = new ArrayList<>();
         while (rs.next()){
-            Student student = new Student();
-            student.setId(rs.getLong("id"));
-            student.setName(rs.getString("name"));
-            result.add(student);
+            Book book = new Book();
+            book.setId(rs.getLong("id"));
+            book.setName(rs.getString("name"));
+            result.add(book);
         }
         return result;
     }

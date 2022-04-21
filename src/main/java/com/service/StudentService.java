@@ -1,7 +1,14 @@
 package com.service;
 
-import com.entity.Student;
+import com.model.Student;
 
 public interface StudentService {
-    Student getById(Long studentId);
+
+    Integer insert(Student student);
+
+    void update(Student student);
+
+    void deleteById(Integer id);
+
+    Student getById(Integer id);
 }

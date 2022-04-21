@@ -1,0 +1,8 @@
+create table employee
+(
+    id    bigint identity
+        primary key,
+    age   int,
+    email varchar(50),
+    name  varchar(20)
+)

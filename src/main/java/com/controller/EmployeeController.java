@@ -1,6 +1,6 @@
 package com.controller;
 
-import com.entity.Employee;
+import com.model.Employee;
 import com.repository.EmployeeRepository;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;

@@ -1,6 +1,6 @@
 package com.employee.test;
 
-import com.entity.Employee;
+import com.model.Employee;
 import com.repository.EmployeeRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,14 @@
 package com.dao;
 
-import com.entity.Student;
+import com.model.Student;
 
 public interface StudentDao {
-    Student getById(Long student);
+
+    Integer insert(Student student);
+
+    void update(Student student);
+
+    void deleteById(Integer id);
+
+    Student getById(Integer id);
 }

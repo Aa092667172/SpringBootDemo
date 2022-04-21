@@ -1,11 +1,11 @@
-package com.entity;
+package com.model;
 
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
 
 @Data
-public class Student {
+public class Book {
     private Long id;
     @NotBlank
     private String name;

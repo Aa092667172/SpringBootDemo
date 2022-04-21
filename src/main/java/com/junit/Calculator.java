@@ -5,6 +5,10 @@ public class Calculator {
         return x + y;
     }
 
+    public int divide(int x,int y){
+        return x / y;
+    }
+
     public static void main(String[] args) {
         Calculator c = new Calculator();
         System.out.println(c.add(1,2));
