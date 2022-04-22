@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * 在test底下為測試結束完 rollback
  */
 @SpringBootTest
-class StudentDaoImplTest {
+public class StudentDaoImplTest {
     @Autowired
     private StudentDao studentDao;
     @Test
