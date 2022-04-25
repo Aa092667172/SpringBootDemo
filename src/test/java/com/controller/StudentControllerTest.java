@@ -18,44 +18,47 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 /**
  * mockMvc模擬前端API請求
+ * google搜尋mocki 可模擬後端api回傳json參數
+ * https://mocki.io/
  */
 @SpringBootTest
 @AutoConfigureMockMvc
 public class StudentControllerTest {
     @Autowired
     private MockMvc mockMvc;
+
     @Test
     public void getById() throws Exception {
         RequestBuilder requestBuilder = MockMvcRequestBuilders
 //                    .get("/students/3");
-                    .get("/students/{studentId}",3)
-                    .header("headerName","headerValue")
-                    .queryParam("graduate","true");
-       MvcResult mvcResult= mockMvc.perform(requestBuilder)
+                .get("/students/{studentId}", 3)
+                .header("headerName", "headerValue")
+                .queryParam("graduate", "true");
+        MvcResult mvcResult = mockMvc.perform(requestBuilder)
                 .andDo(print())
                 .andExpect(status().is(200))
                 //取得json中的哪個key的值
-                .andExpect(jsonPath("$.id",equalTo(3)))
-                .andExpect(jsonPath("$.name",notNullValue()))
+                .andExpect(jsonPath("$.id", equalTo(3)))
+                .andExpect(jsonPath("$.name", notNullValue()))
                 .andReturn();
 
-       String body = mvcResult.getResponse().getContentAsString();
+        String body = mvcResult.getResponse().getContentAsString();
         System.out.println("返回的response body = " + body);
     }
 
     @Test
     public void create() throws Exception {
-            RequestBuilder requestBuilder = MockMvcRequestBuilders
-                    .post("/students")
-                    .contentType(MediaType.APPLICATION_JSON)
-                    .content("{\n" +
-                            "    \"id\": 3,\n" +
-                            "    \"name\": \"Judy\",\n" +
-                            "    \"score\": 100.0,\n" +
-                            "    \"graduate\": true,\n" +
-                            "    \"createDate\": \"2021-09-05T04:19:48.000+00:00\"\n" +
-                            "}");
-            mockMvc.perform(requestBuilder)
-                    .andExpect(status().is(201));
+        RequestBuilder requestBuilder = MockMvcRequestBuilders
+                .post("/students")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\n" +
+                        "    \"id\": 3,\n" +
+                        "    \"name\": \"Judy\",\n" +
+                        "    \"score\": 100.0,\n" +
+                        "    \"graduate\": true,\n" +
+                        "    \"createDate\": \"2021-09-05T04:19:48.000+00:00\"\n" +
+                        "}");
+        mockMvc.perform(requestBuilder)
+                .andExpect(status().is(201));
     }
 }

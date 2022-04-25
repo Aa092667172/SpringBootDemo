@@ -1,4 +1,4 @@
-package com.example.springbootdemo;
+package com.employee;
 
 import com.model.Employee;
 import com.repository.EmployeeRepository;
@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SpringBootDemoApplicationTests {
+public class EmployeeTest {
     @Autowired
     private EmployeeRepository repository;
 
@@ -15,23 +15,19 @@ class SpringBootDemoApplicationTests {
     public void save() {
         Employee vo = new Employee();
         vo.setAge(20);
-        vo.setEmail("test@yahoo.com.tw");
-        vo.setName("yoyo");
-        repository.save(vo);
-    }
-
-    @Test
-    public void getOne() {
-        Employee vo = new Employee();
-        vo.setAge(20);
         vo.setEmail("qqp15601560@yahoo.com.tw");
         vo.setName("yoyo");
-        repository.save(vo);
+        Employee employee = repository.save(vo);
+        System.out.println(employee);
     }
 
     @Test
-    public void getAll() {
+    public void findAll() {
         System.out.println(repository.findAll());
     }
 
+    @Test
+    public void testQuery(){
+        System.out.println(repository.testQuery("yoyo",1l));
+    }
 }

@@ -5,6 +5,8 @@ import com.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class StudentServiceImpl implements StudentService {
 
@@ -29,5 +31,10 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public Student getById(Integer id) {
         return studentDao.getById(id);
+    }
+
+    @Override
+    public List<Student> findAll() {
+        return studentDao.findAll();
     }
 }

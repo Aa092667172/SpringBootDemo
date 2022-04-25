@@ -2,6 +2,8 @@ package com.dao;
 
 import com.model.Student;
 
+import java.util.List;
+
 public interface StudentDao {
 
     Integer insert(Student student);
@@ -11,4 +13,6 @@ public interface StudentDao {
     void deleteById(Integer id);
 
     Student getById(Integer id);
+
+    List<Student> findAll();
 }

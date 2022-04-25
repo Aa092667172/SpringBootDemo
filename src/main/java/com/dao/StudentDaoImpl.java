@@ -80,4 +80,11 @@ public class StudentDaoImpl implements StudentDao {
             return null;
         }
     }
+
+    @Override
+    public List<Student> findAll() {
+        String sql = "SELECT id, name, score, graduate, create_date FROM student ";
+
+        return  namedParameterJdbcTemplate.query(sql, new StudentRowMapper());
+    }
 }
