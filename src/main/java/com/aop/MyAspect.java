@@ -3,6 +3,7 @@ package com.aop;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Component;
 
 /**
@@ -23,7 +24,7 @@ public class MyAspect {
      */
 
     @Around("execution(* com.aop.Dog.*(..))")
-    public Object around(ProceedingJoinPoint pjp) throws Throwable {
+    public Object around(@NotNull ProceedingJoinPoint pjp) throws Throwable {
         System.out.println("around before");
         Object obj = pjp.proceed();
         System.out.println("around after");

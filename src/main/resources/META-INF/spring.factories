@@ -1,0 +1,6 @@
+# Initializers
+org.springframework.context.ApplicationContextInitializer=\
+com.config.filter.FilterApplication
+# Auto Configure
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.config.ConfigTestBeanXML

@@ -17,6 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class StudentDaoImplTest {
     @Autowired
     private StudentDao studentDao;
+
     @Test
     public void getById(){
         Student student = studentDao.getById(6);

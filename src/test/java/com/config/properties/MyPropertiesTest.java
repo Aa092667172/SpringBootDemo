@@ -1,15 +1,15 @@
-package com.aop;
+package com.config.properties;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MyAspectTest {
+class MyPropertiesTest {
     @Autowired
-    Dog dog;
+    MyProperties printBean;
     @Test
-    public void aspectDog(){
-       dog.eat();
+    void print(){
+        System.out.println(printBean);
     }
 }

@@ -5,6 +5,7 @@ import com.repository.EmployeeRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 @SpringBootTest
 public class EmployeeTest {
@@ -12,6 +13,7 @@ public class EmployeeTest {
     private EmployeeRepository repository;
 
     @Test
+    @Transactional
     public void save() {
         Employee vo = new Employee();
         vo.setAge(20);
@@ -30,4 +32,10 @@ public class EmployeeTest {
     public void testQuery(){
         System.out.println(repository.testQuery("yoyo",1l));
     }
+
+
+    public void TestFindEmployee() {
+
+    }
+
 }
